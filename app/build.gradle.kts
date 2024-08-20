@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -42,10 +44,23 @@ android {
 }
 
 dependencies {
+    //Dagger/Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    // Retrofit with Scalar Converter
+    implementation(libs.converter.scalars)
+    //GSon Converter
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    //OkHTTP3
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.8.0")
+
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     // For control over item selection of both touch and mouse driven selection
-    implementation("androidx.recyclerview:recyclerview-selection:1.1.0")
-    implementation("androidx.cardview:cardview:1.0.0")
+    implementation(libs.androidx.recyclerview.selection)
+    implementation(libs.androidx.cardview)
     implementation(libs.recyclerview.v7)
     implementation(libs.cardview.v7)
     implementation(libs.androidx.core.ktx)
